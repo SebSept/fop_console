@@ -13,7 +13,7 @@ services:
     class: FOP\Console\Commands\UnhookModule
     tags:
       - { name: console.command }
-  
+
   fop.console.hook_module.command:
     class: FOP\Console\Commands\HookModule
     tags:
@@ -101,6 +101,10 @@ services:
 
   fop.console.theme-reset.command:
     class: FOP\Console\Commands\ThemeResetLayout
+    tags:
+      - { name: console.command }
+  fop.console.customers.groups.command:
+    class: FOP\Console\Commands\Customers\CustomersGroups
     tags:
       - { name: console.command }
 
