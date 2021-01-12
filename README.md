@@ -43,6 +43,8 @@ php bin/console pr:mo install fop_console
 * `fop:export`: Exports object models in XML
 * `fop:check-container`   Health check of the Service Container, for now list the services we can't use in Symfony commands
 * `fop:customer-groups`: Move or add in bulk clients from one group client to another
+* `fop:configuration:export` Export configuration values to a json file
+* `fop:configuration:import` Import configuration values from a json file
 
 ## Create your owns Commands
 
@@ -84,6 +86,7 @@ final class MyCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
+
         $io->text('Hello friends of PrestaShop!');
 
         return 0; // return 0 on success or 1 on failure.        
