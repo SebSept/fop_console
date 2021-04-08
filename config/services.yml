@@ -117,3 +117,8 @@ services:
     class: FOP\Console\Commands\Configuration\Import
     tags:
       - { name: console.command }
+
+  fop.console.customers.groups.command:
+    class: FOP\Console\Commands\Customers\CustomersGroups
+    tags:
+      - { name: console.command }
