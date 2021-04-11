@@ -16,16 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: release-drafter/release-drafter@v5
-        with:
-          template: |
-            ## Changes
-
-            $CHANGES
-
-            ### Contributors
-
-            $CONTRIBUTORS
-
 #         config-name: my-config.yml
         #   disable-autolabeler: true
         env:
