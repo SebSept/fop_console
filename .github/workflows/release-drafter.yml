@@ -16,7 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: release-drafter/release-drafter@v5
-#         config-name: my-config.yml
+        with:
+          config-name: release-drafter.yml
         #   disable-autolabeler: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
