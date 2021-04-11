@@ -24,6 +24,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+// nimportequoi on va dire que c'est une feature
+
 /**
  * Symfony Command class for PrestaShop allowed to rely on legacy classes
  */
