@@ -19,6 +19,7 @@
 
 namespace FOP\Console;
 
+// nimp - on va dire que c'est un feature
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
