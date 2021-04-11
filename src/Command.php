@@ -24,7 +24,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-// relou le machin.
+// sans le draft...
 /**
  * Symfony Command class for PrestaShop allowed to rely on legacy classes
  */
