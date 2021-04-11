@@ -2,10 +2,10 @@ name: Release Drafter
 
 on:
   push:
-    branches: [dev]
+    branches: [all]
   pull_request:
     types: [opened, reopened, synchronize]
-    branches: [dev]
+    branches: [all]
 
 jobs:
   update_release_draft:
