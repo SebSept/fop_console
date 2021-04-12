@@ -1,4 +1,4 @@
-name: "Release Module"
+name: "Release : Draft & add module asset."
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
-      - name: "Setup zipname. Exports $MODULE_NAME, $VERSION & $ZIP_FILE"
+      - name: "Setup zip filename. Exports $MODULE_NAME, $VERSION & $ZIP_FILE"
         run: |
           MODULE_NAME=${GITHUB_REPOSITORY#*/}
           echo "MODULE_NAME=${MODULE_NAME}" >> $GITHUB_ENV
@@ -45,11 +45,22 @@ jobs:
           exclusions: '*.git* README.md config_*.xml config.xml .php_cs_dist'
           type: 'zip'
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: "Upload binaries to release"
+        uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          #          automatic_release_tag: "latest"
-          files: |
-            ${{ env.ZIP_FILE }}
-        id: "automatic_releases"
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: '${{ env.ZIP_FILE }}'
+#          asset_name: '${{ env.ZIP_FILE }}'
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "release text : erased by next step."
+
+      - name: "Draft"
+        uses: release-drafter/release-drafter@v5
+        with:
+          config-name: release-drafter-config.yml
+          disable-autolabeler: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
