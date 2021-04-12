@@ -61,8 +61,8 @@ jobs:
         with:
           config-name: release-drafter-config.yml
           disable-autolabeler: true
-          tag: '${{ env.ZIP_FILE }}'
-          version: '${{ env.ZIP_FILE }}'
+          tag: '${{ env.VERSION }}'
+          version: '${{ env.VERSION }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
