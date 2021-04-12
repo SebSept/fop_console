@@ -17,6 +17,7 @@ jobs:
           REF='${{ github.ref }}'
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
           VERSION=${REF#refs/*/}
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
           echo "ZIP_FILE=${MODULE_NAME}_${VERSION}.zip" >> $GITHUB_ENV
 
       - name: "Checkout source code"
@@ -60,6 +61,8 @@ jobs:
         with:
           config-name: release-drafter-config.yml
           disable-autolabeler: true
+          tag: '${{ env.ZIP_FILE }}'
+          version: '${{ env.ZIP_FILE }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

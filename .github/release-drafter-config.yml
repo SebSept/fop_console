@@ -1,7 +1,7 @@
 # Configuration for release-drafter workflow
 # Documentation : https://github.com/marketplace/actions/release-drafter
 name-template: '$NEXT_MINOR_VERSION'
-#tag-template: 'v$NEXT_MINOR_VERSION'
+tag-template: '$NEXT_MINOR_VERSION'
 categories:
   - title: '🚀 Features'
     label: 'feature'
