@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace FOP\Console\Commands\Configuration;
 
+use Db;
 use DbQuery;
+use Exception;
 use FOP\Console\Command;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -28,14 +30,14 @@ final class Export extends Command
                 . PHP_EOL . '<keys> are configuration names, "PS_LANG_DEFAULT" for example, multiple keys can be provided.'
                 . PHP_EOL . '<keys> can also be mysql like values : use "PSGDPR_%" to export all configuration starting with "PSGDPR_" for example.'
                 . PHP_EOL . PHP_EOL . 'This command is not multishop, neither multilang.'
-                . PHP_EOL . PHP_EOL . 'Examples :'
-                . PHP_EOL . 'dump one value : <info>./bin/console fop:configuration:export PS_COUNTRY_DEFAULT</info>'
-                . PHP_EOL . 'dump multiples values : <info>./bin/console fop:configuration:export PS_COMBINATION_FEATURE_ACTIVE PS_CUSTOMIZATION_FEATURE_ACTIVE PS_FEATURE_FEATURE_ACTIVE
-</info>'
-                . PHP_EOL . 'dump multiples values using mysql "like" syntax : <info>./bin/console fop:configuration:export --file configuration_blocksocial.json BLOCKSOCIAL_%</info>'
             )
             ->addOption('file', null, InputOption::VALUE_REQUIRED, 'file to dump to', self::PS_CONFIGURATIONS_FILE)
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'overwrite existing file')
+
+            ->addUsage('PS_COUNTRY_DEFAULT # export a single value to ' . self::PS_CONFIGURATIONS_FILE)
+            ->addUsage('PS_COMBINATION_FEATURE_ACTIVE PS_CUSTOMIZATION_FEATURE_ACTIVE --file myfile.json # export 2 configurations values value to myfile.json')
+            ->addUsage('BLOCKSOCIAL_% # dump all configurations values beginning with "BLOCKSOCIAL_"')
+
             ->addArgument('keys', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'configuration values to export');
     }
 
@@ -104,11 +106,11 @@ final class Export extends Command
         ->where(sprintf('name LIKE "%s"', $key_like_term));
 
 //        $db = $this->getContainer()->get('prestashop.adapter.legacy_db'); // not on ps 1.7.5
-        $db = \Db::getInstance();
+        $db = Db::getInstance();
         $r = $db->executeS($query);
         if (false === $r) {
             dump($query->build(), $db->getMsgError());
-            throw new \Exception('sql query error : see dump above.');
+            throw new Exception('sql query error : see dump above.');
         }
 
         return array_combine(array_column($r, 'name'), array_column($r, 'value'));
