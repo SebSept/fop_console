@@ -79,7 +79,7 @@ final class Export extends Command
 
         $json_export = json_encode($to_export, JSON_PRETTY_PRINT);
         if (false === $json_export) {
-            throw new RuntimeException('Failed to json encode configuration');
+            throw new RuntimeException('Json encoding failed !');
         }
 
         $fs = new Filesystem();
