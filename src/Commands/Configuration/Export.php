@@ -93,7 +93,7 @@ final class Export extends Command
     /**
      * @param string $key_like_term
      *
-     * @return array [name => value, ...]
+     * @return array<string, string>
      *
      * @throws \PrestaShopDatabaseException
      * @throws \PrestaShopException
