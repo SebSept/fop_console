@@ -113,6 +113,6 @@ final class Export extends Command
             throw new Exception('sql query error : see dump above.');
         }
 
-        return array_combine(array_column($r, 'name'), array_column($r, 'value'));
+        return array_column($results, 'value', 'name');
     }
 }
