@@ -107,8 +107,8 @@ final class Export extends Command
 
 //        $db = $this->getContainer()->get('prestashop.adapter.legacy_db'); // not on ps 1.7.5
         $db = Db::getInstance();
-        $r = $db->executeS($query);
-        if (false === $r) {
+        $results = $db->executeS($query);
+        if (false === $results) {
             dump($query->build(), $db->getMsgError());
             throw new Exception('sql query error : see dump above.');
         }
