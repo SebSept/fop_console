@@ -100,7 +100,7 @@ final class Export extends Command
      */
     private function queryConfigurationsLike(string $key_like_term): array
     {
-        $query = new DbQuery(); // @todo sup Core
+        $query = new DbQuery();
         $query->select('name, value')
         ->from('configuration')
         ->where(sprintf('name LIKE "%s"', $key_like_term));
